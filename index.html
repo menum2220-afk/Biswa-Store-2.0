@@ -20,14 +20,14 @@ body{background:radial-gradient(circle at 20% 0,rgba(82,255,138,.12),transparent
 *{box-sizing:border-box}body{margin:0;background:#030604;color:#eaffef;font-family:Inter,system-ui,Arial,sans-serif;overflow:hidden}
 button{font:inherit;color:inherit}.app{height:100dvh;display:flex;flex-direction:column;max-width:680px;margin:auto;background:radial-gradient(circle at 50% 0,#12301c55,transparent 45%),#050806}
 .splash{position:fixed;inset:0;z-index:50;background:#020503;display:grid;place-items:center;transition:.7s}.splash.hide{opacity:0;pointer-events:none}.slogo{font-size:clamp(28px,8vw,58px);font-weight:1000;letter-spacing:3px;text-align:center;animation:pulse 1.4s infinite}.slogo span{color:#52ff8a}.loader{width:160px;height:3px;background:#18301f;margin:24px auto;overflow:hidden;border-radius:5px}.loader i{display:block;height:100%;width:45%;background:#4cff86;animation:load 1.2s infinite}@keyframes load{to{transform:translateX(350%)}}@keyframes pulse{50%{text-shadow:0 0 28px #39ff6a;transform:scale(1.03)}}
-.top{padding:12px 14px 10px;border-bottom:1px solid #1c3826;background:#07100bd9;backdrop-filter:blur(18px);display:flex;gap:11px;align-items:center}.logo{width:48px;height:48px;border-radius:15px;background:linear-gradient(145deg,#183f25,#07130b);display:grid;place-items:center;border:1px solid #37f87866;box-shadow:0 0 22px #27ff6840;font-weight:1000}.title{font-weight:900}.status{font-size:11px;color:#73ff9b}.owner{margin-left:auto;text-align:right;font-size:11px;color:#8ca994}.owner b{display:block;color:#dfffe7}
-.chat{flex:1;overflow:auto;padding:16px 12px 22px;scroll-behavior:smooth}.msg{max-width:92%;margin:8px 0;padding:12px 14px;border:1px solid #21472d;background:#0b160fdd;border-radius:17px 17px 17px 5px;box-shadow:0 8px 25px #0007;animation:in .3s ease}.msg.bot{margin-right:auto}.msg.user{margin-left:auto;border-radius:17px 17px 5px 17px;background:#12351d}.typing{display:inline-flex;gap:4px}.typing i{width:6px;height:6px;border-radius:50%;background:#73ff9b;animation:dot .9s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}@keyframes dot{50%{opacity:.2;transform:translateY(-4px)}}@keyframes in{from{opacity:0;transform:translateY(12px) scale(.98)}}
-.buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:10px}.btn{border:1px solid #2b663b;background:linear-gradient(145deg,#102218,#08110b);padding:12px 9px;border-radius:13px;cursor:pointer;font-weight:800;box-shadow:inset 0 0 16px #3aff7410;transition:.18s}.btn:hover,.btn:active{transform:translateY(-2px);border-color:#61ff91;box-shadow:0 0 20px #32ff6230}.danger{border-color:#6c3030}.wide{grid-column:1/-1}.price{font-size:16px}.muted{color:#91aa98;font-size:12px}.qr{width:min(300px,80vw);display:block;margin:12px auto;border-radius:14px;background:white;padding:8px}.timer{color:#79ff9f;font-weight:900}.composer{padding:10px 12px;border-top:1px solid #1c3826;background:#07100bd9;display:flex;gap:8px}.composer button{flex:1}.mini{max-width:680px;margin:auto}
+.top{padding:12px 14px 10px;border-bottom:1px solid #1c3826;background:#07100bd9;backdrop-filter:blur(18px);display:flex;gap:11px;align-items:center}.logo{width:48px;height:48px;border-radius:15px;background:linear-gradient(145deg,#183f25,#07130b);display:grid;place-items:center;border:1px solid #37f87866;box-shadow:0 0 22px #27ff6840;font-weight:1000}.title{font-weight:900;font-size:13px}.status{font-size:10px;color:#73ff9b}.owner{margin-left:auto;text-align:right;font-size:10px;color:#8ca994}.owner b{display:block;color:#dfffe7}
+.chat{flex:1;overflow:auto;padding:16px 12px 22px;scroll-behavior:smooth}.msg{max-width:92%;margin:7px 0;padding:10px 12px;font-size:13px;line-height:1.42;border:1px solid #21472d;background:#0b160fdd;border-radius:17px 17px 17px 5px;box-shadow:0 8px 25px #0007;animation:in .3s ease}.msg.bot{margin-right:auto}.msg.user{margin-left:auto;border-radius:17px 17px 5px 17px;background:#12351d}.typing{display:inline-flex;gap:4px}.typing i{width:6px;height:6px;border-radius:50%;background:#73ff9b;animation:dot .9s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}@keyframes dot{50%{opacity:.2;transform:translateY(-4px)}}@keyframes in{from{opacity:0;transform:translateY(12px) scale(.98)}}
+.buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:10px}.btn{border:1px solid #2b663b;background:linear-gradient(145deg,#102218,#08110b);padding:10px 8px;font-size:12px;border-radius:13px;cursor:pointer;font-weight:800;box-shadow:inset 0 0 16px #3aff7410;transition:.18s}.btn:hover,.btn:active{transform:translateY(-2px);border-color:#61ff91;box-shadow:0 0 20px #32ff6230}.danger{border-color:#6c3030}.wide{grid-column:1/-1}.price{font-size:16px}.muted{color:#91aa98;font-size:11px}.qr{width:min(300px,80vw);display:block;margin:12px auto;border-radius:14px;background:white;padding:8px}.timer{color:#79ff9f;font-weight:900}.composer{padding:10px 12px;border-top:1px solid #1c3826;background:#07100bd9;display:flex;gap:8px}.composer button{flex:1}.mini{max-width:680px;margin:auto}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:#275a35;border-radius:9px}
 </style>
 </head>
 <body>
-<div class="splash" id="splash"><div><div class="slogo">BISWAJIT <span>MODS STORE</span></div><div class="loader"><i></i></div><div style="text-align:center;color:#7da888;font-size:12px">PREMIUM STORE • VERIFYING...</div></div></div>
+<div class="splash" id="splash"><div><div class="slogo">BISWAJIT <span>STORE</span></div><div class="loader"><i></i></div><div style="text-align:center;color:#7da888;font-size:12px">PREMIUM STORE • VERIFYING...</div></div></div>
 <div class="app">
 <header class="top"><div class="logo">BM</div><div><div class="title">BISWA STORE 2.0</div><div class="status">● BOT ONLINE</div></div><div class="owner">OWNER<b>BISWAJIT MODS</b></div></header>
 <main class="chat" id="chat"></main>
@@ -113,10 +113,27 @@ document.getElementById("cancel").onclick=()=>{clearInterval(timer);img.remove()
 document.getElementById("verify").onclick=()=>{sound("verify");clearInterval(timer);let v=typing();setTimeout(()=>{v.remove();img.remove();wrap.remove();sound("remove");add("<b>Payment verification requested ✓</b><br>"+product+" • "+duration+" • ₹"+amount+"<br><span class='muted'>After confirmation, use GET KEY to contact the owner.</span>",[{t:"🔑 GET KEY",wide:true,f:()=>getKey(product,duration,amount)}])},3000)};
 }
 function getKey(p,d,a){let text=`Hello BISWAJIT MODS, I want to get my key.%0AProduct: ${p}%0AValidity: ${d}%0APrice: ₹${a}`;location.href=WA+"?text="+text}
-function contact(){bot("<b>CONTACT ADMIN</b><br><span class="muted">Telegram: @biswa_mods<br>WhatsApp: 7099517102</span>",[{t:"TG CONTACT • @biswa_moda",f:()=>location.href=ADMIN_TG},{t:"WHTSP CONTACT • 7099517202",f:()=>location.href=WA}])}
+function contact(){bot("<b>CONTACT ADMIN</b><br><span class='muted'>Telegram: @biswa_mods<br>WhatsApp: 7099517102</span>",[{t:"TG CONTACT • @biswa_mods",f:()=>location.href=ADMIN_TG},{t:"WHTSP CONTACT • 7099517102",f:()=>location.href=WA}])}
 function downloads(){bot("<b>DOWNLOAD LINKS</b><br><span class='muted'>Choose your download channel.</span>",[{t:"WhatsApp Download File",f:()=>location.href=CHANNEL},{t:"Telegram Download File",f:()=>location.href=TG}])}
 function share(){let link=location.href;bot("<b>SHEAR BOT & EARN 🎁</b><br><span class='muted'>Copy the bot/store link and share it with your friends.</span>",[{t:"📋 COPY LINK",wide:true,f:async()=>{await navigator.clipboard?.writeText(link);bot("Link copied ✓")}}]);setTimeout(()=>add("<b>Notice / सूचना / জাননী</b><br><br>🇮🇳 <b>Hindi:</b> Is store link ko apne friends ke saath share karein. Agar aapke friend ne 1 key buy ki, to aapko <b>10% discount</b> milega.<br><br>🇬🇧 <b>English:</b> Share this store link with your friends. If your friend buys 1 key, you get a <b>10% discount</b>.<br><br>অসমীয়া <b>Assamese:</b> এই store link আপোনাৰ বন্ধুসকলৰ সৈতে share কৰক। আপোনাৰ বন্ধুৱে 1 key কিনিলে আপুনি <b>10% discount</b> পাব।"),700)}
-setTimeout(()=>{document.getElementById("splash").classList.add("hide");bot("✓ Verification complete<br><span class='muted'>/start command received</span>",[{t:"/start",wide:true,f:home}])},3000);
+setTimeout(()=>{
+  const splash=document.getElementById("splash");
+  splash.classList.add("hide");
+  chat.innerHTML="";
+  const startTyping=typing();
+  setTimeout(()=>{
+    startTyping.remove();
+    add("<span class='muted'>/start</span>");
+    setTimeout(()=>home(),350);
+  },650);
+},3000);
+window.addEventListener("error",e=>{
+  console.error(e);
+  const c=document.getElementById("chat");
+  if(c && !c.children.length){
+    c.innerHTML='<div class="msg bot"><b>BISWA STORE 2.0</b><br><span class="muted">Store loaded. Tap MAIN MENU.</span></div>';
+  }
+});
 </script>
 </body>
 </html>
