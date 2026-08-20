@@ -1,0 +1,1419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07100b">
+<title>BISWA STORE 2.0</title>
+
+<style>
+:root{
+  --bg:#030604;
+  --panel:#07100b;
+  --panel2:#0b160f;
+  --line:#21472d;
+  --accent:#52ff8a;
+  --text:#eaffef;
+  --muted:#91aa98
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,Arial,sans-serif;
+  overflow:hidden;
+}
+
+button{
+  font:inherit;
+  color:inherit;
+}
+
+.app{
+  height:100dvh;
+  display:flex;
+  flex-direction:column;
+  max-width:680px;
+  margin:auto;
+  background:
+    radial-gradient(circle at 50% 0,#12301c55,transparent 45%),
+    var(--bg);
+}
+
+/* SPLASH */
+
+.splash{
+  position:fixed;
+  inset:0;
+  z-index:50;
+  background:#020503;
+  display:grid;
+  place-items:center;
+  transition:.7s;
+}
+
+.splash.hide{
+  opacity:0;
+  pointer-events:none;
+}
+
+.slogo{
+  font-size:clamp(28px,8vw,58px);
+  font-weight:1000;
+  letter-spacing:3px;
+  text-align:center;
+  animation:pulse 1.4s infinite;
+}
+
+.slogo span{
+  color:#52ff8a;
+}
+
+.loader{
+  width:160px;
+  height:3px;
+  background:#18301f;
+  margin:24px auto;
+  overflow:hidden;
+  border-radius:5px;
+}
+
+.loader i{
+  display:block;
+  height:100%;
+  width:45%;
+  background:#4cff86;
+  animation:load 1.2s infinite;
+}
+
+@keyframes load{
+  to{
+    transform:translateX(350%);
+  }
+}
+
+@keyframes pulse{
+  50%{
+    text-shadow:0 0 28px #39ff6a;
+    transform:scale(1.03);
+  }
+}
+
+/* TOP */
+
+.top{
+  padding:12px 14px 10px;
+  border-bottom:1px solid var(--line);
+  background:color-mix(in srgb,var(--panel) 88%,transparent);
+  backdrop-filter:blur(18px);
+  display:flex;
+  gap:11px;
+  align-items:center;
+}
+
+.logo{
+  width:48px;
+  height:48px;
+  border-radius:15px;
+  background:linear-gradient(145deg,#183f25,#07130b);
+  display:grid;
+  place-items:center;
+  border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);
+  box-shadow:0 0 25px color-mix(in srgb,var(--accent) 25%,transparent);
+  font-weight:1000;
+}
+
+.title{
+  font-weight:900;
+  font-size:13px;
+}
+
+.status{
+  font-size:10px;
+  color:var(--accent);
+}
+
+.owner{
+  margin-left:auto;
+  text-align:right;
+  font-size:10px;
+  color:#8ca994;
+}
+
+.owner b{
+  display:block;
+  color:#dfffe7;
+}
+
+/* CHAT */
+
+.chat{
+  flex:1;
+  overflow:auto;
+  padding:16px 12px 22px;
+  scroll-behavior:smooth;
+}
+
+.msg{
+  max-width:92%;
+  margin:7px 0;
+  padding:10px 12px;
+  font-size:13px;
+  line-height:1.42;
+  border:1px solid var(--line);
+  background:color-mix(in srgb,var(--panel2) 90%,transparent);
+  border-radius:17px 17px 17px 5px;
+  box-shadow:0 8px 25px #0007;
+  animation:in .3s ease;
+}
+
+.msg.bot{
+  margin-right:auto;
+}
+
+.msg.user{
+  margin-left:auto;
+  border-radius:17px 17px 5px 17px;
+  background:#12351d;
+}
+
+.typing{
+  display:inline-flex;
+  gap:4px;
+}
+
+.typing i{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--accent);
+  animation:dot .9s infinite;
+}
+
+.typing i:nth-child(2){
+  animation-delay:.15s;
+}
+
+.typing i:nth-child(3){
+  animation-delay:.3s;
+}
+
+@keyframes dot{
+  50%{
+    opacity:.2;
+    transform:translateY(-4px);
+  }
+}
+
+@keyframes in{
+  from{
+    opacity:0;
+    transform:translateY(12px) scale(.98);
+  }
+}
+
+/* BUTTONS */
+
+.buttons{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+  margin-top:10px;
+}
+
+.btn{
+  border:1px solid var(--line);
+  background:linear-gradient(145deg,var(--panel2),var(--panel));
+  padding:10px 8px;
+  font-size:12px;
+  border-radius:13px;
+  cursor:pointer;
+  font-weight:800;
+  box-shadow:inset 0 0 16px #3aff7410;
+  transition:.18s;
+}
+
+.btn:hover,
+.btn:active{
+  transform:translateY(-2px);
+  border-color:var(--accent);
+  box-shadow:0 0 24px color-mix(in srgb,var(--accent) 28%,transparent);
+}
+
+.danger{
+  border-color:#6c3030;
+}
+
+.wide{
+  grid-column:1/-1;
+}
+
+.price{
+  font-size:16px;
+}
+
+.muted{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.qr{
+  width:min(300px,80vw);
+  display:block;
+  margin:12px auto;
+  border-radius:14px;
+  background:white;
+  padding:8px;
+}
+
+.timer{
+  color:var(--accent);
+  font-weight:900;
+}
+
+.qr-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:8px;
+}
+
+/* COMPOSER */
+
+.composer{
+  padding:10px 12px;
+  border-top:1px solid var(--line);
+  background:color-mix(in srgb,var(--panel) 88%,transparent);
+  display:flex;
+  gap:8px;
+}
+
+.composer button{
+  flex:1;
+}
+
+.mini{
+  max-width:680px;
+}
+
+/* THEMES */
+
+.theme-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+  margin-top:10px;
+}
+
+.theme-dot{
+  height:9px;
+  width:9px;
+  border-radius:50%;
+  display:inline-block;
+  margin-right:7px;
+  box-shadow:0 0 8px currentColor;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+  width:4px;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#275a35;
+  border-radius:9px;
+}
+
+@media(max-width:430px){
+  .composer{
+    gap:5px;
+  }
+
+  .composer .btn{
+    font-size:11px;
+    padding:10px 5px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SPLASH -->
+<div class="splash" id="splash">
+  <div>
+    <div class="slogo">
+      BISWAJIT <span>STORE</span>
+    </div>
+
+    <div class="loader">
+      <i></i>
+    </div>
+
+    <div style="text-align:center;color:#7da888;font-size:12px">
+      PREMIUM STORE • VERIFYING...
+    </div>
+  </div>
+</div>
+
+
+<div class="app">
+
+<!-- HEADER -->
+<header class="top">
+
+  <div class="logo">
+    BM
+  </div>
+
+  <div>
+    <div class="title">
+      BISWA STORE 2.0
+    </div>
+
+    <div class="status">
+      ● BOT ONLINE
+    </div>
+  </div>
+
+  <div class="owner">
+    OWNER
+    <b>BISWAJIT MODS</b>
+  </div>
+
+</header>
+
+
+<!-- CHAT -->
+<main class="chat" id="chat"></main>
+
+
+<!-- BOTTOM -->
+<div class="composer">
+
+  <button class="btn" onclick="clearChat()">
+    ✕ CLEAR CHAT
+  </button>
+
+  <button class="btn" onclick="themeMenu()">
+    🎨 THEMES
+  </button>
+
+  <button class="btn" onclick="home()">
+    ⌂ MENU
+  </button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   THEMES
+========================= */
+
+const THEMES=[
+
+["Emerald Cyber","#030604","#07100b","#0b160f","#21472d","#52ff8a"],
+
+["Ocean Neon","#02070b","#07131b","#0b1b24","#17475c","#37d9ff"],
+
+["Royal Purple","#07030b","#12071a","#1a0b25","#4c2364","#c77dff"],
+
+["Crimson Night","#0a0305","#19070a","#240b10","#63202a","#ff526b"],
+
+["Golden Luxe","#090704","#171107","#21170a","#6c4b19","#ffd166"],
+
+["Arctic Ice","#03070a","#071218","#0b1c24","#24546a","#8be9ff"],
+
+["Cyber Pink","#090309","#160714","#210a1e","#6a245e","#ff65d9"],
+
+["Toxic Lime","#050800","#0d1604","#132007","#3f681b","#b7ff4a"],
+
+["Midnight Blue","#02030a","#070b18","#0b1022","#25366e","#688cff"],
+
+["Electric Violet","#05030b","#0d0718","#150b25","#482a78","#9b7bff"],
+
+["Sunset Orange","#090503","#170b05","#231007","#6b341a","#ff9f43"],
+
+["Aqua Glass","#020909","#061616","#092020","#1b6666","#55ffe5"],
+
+["Rose Gold","#090507","#160b0f","#211016","#6a3543","#ff9fbc"],
+
+["Matrix Green","#010501","#061006","#0a190b","#205c2a","#39ff88"],
+
+["Galaxy Blue","#02040a","#080d1b","#0e1428","#2b4c88","#7aa7ff"],
+
+["Plasma Red","#090203","#170509","#22070d","#6d1e2c","#ff456d"],
+
+["Silver Frost","#070809","#111517","#171d20","#46545a","#d7f0f5"],
+
+["Neon Yellow","#070700","#151503","#1e1e05","#666616","#f4ff4d"],
+
+["Deep Teal","#020807","#061310","#0a1d18","#1e5c4f","#4fffd0"],
+
+["Cyber White","#060708","#111316","#181b20","#4b535c","#f3f7ff"]
+
+];
+
+
+function applyTheme(i){
+
+  const t=THEMES[i];
+
+  document.documentElement.style.setProperty("--bg",t[1]);
+
+  document.documentElement.style.setProperty("--panel",t[2]);
+
+  document.documentElement.style.setProperty("--panel2",t[3]);
+
+  document.documentElement.style.setProperty("--line",t[4]);
+
+  document.documentElement.style.setProperty("--accent",t[5]);
+
+  localStorage.setItem("biswaTheme",i);
+
+}
+
+
+function themeMenu(){
+
+  let grid=THEMES.map((t,i)=>({
+
+    t:`<span class="theme-dot"
+    style="background:${t[5]};color:${t[5]}"></span>
+    ${i+1}. ${t[0]}`,
+
+    f:()=>{
+      applyTheme(i);
+      bot("Theme changed to <b>"+t[0]+"</b> ✨");
+    }
+
+  }));
+
+  bot(
+    "<b>🎨 BOT THEMES</b><br>" +
+    "<span class='muted'>Choose one of 20 premium themes.</span>",
+    grid
+  );
+
+}
+
+
+applyTheme(
+  Number(localStorage.getItem("biswaTheme") || 0)
+);
+
+
+/* =========================
+   TELEGRAM
+========================= */
+
+const TG="https://t.me/+q5jI6rv4gQE4ZGY1";
+
+const ADMIN_TG="https://t.me/biswa_mods";
+
+
+/* =========================
+   PRODUCT PRICES
+========================= */
+
+const prices={
+
+  "BISWA MODS PRO+":[
+
+    ["1 Hour",60],
+    ["3 Hours",110],
+    ["6 Hours",160],
+    ["12 Hours",200],
+    ["1 Day",290],
+    ["2 Days",550],
+    ["3 Days",830],
+    ["5 Days",1350],
+    ["7 Days",1780]
+
+  ],
+
+
+  "BISWA MODS 2.0":[
+
+    ["1 Hour",60],
+    ["3 Hours",110],
+    ["6 Hours",160],
+    ["12 Hours",200],
+    ["1 Day",290],
+    ["2 Days",550],
+    ["3 Days",830],
+    ["5 Days",1350],
+    ["7 Days",1780]
+
+  ],
+
+
+  "BISWA SENSI PRO":[
+
+    ["1 Hour",30],
+    ["3 Hours",60],
+    ["6 Hours",100],
+    ["1 Day",150],
+    ["3 Days",250],
+    ["7 Days",400],
+    ["30 Days",700]
+
+  ]
+
+};
+
+
+let timer=null;
+
+const chat=document.getElementById("chat");
+
+let audioCtx;
+
+
+/* =========================
+   SOUND
+========================= */
+
+function sound(kind="click"){
+
+  try{
+
+    audioCtx ||= new (
+      window.AudioContext ||
+      window.webkitAudioContext
+    )();
+
+    const now=audioCtx.currentTime;
+
+    const seq=
+      kind==="remove"
+      ? [220,160]
+      : kind==="verify"
+      ? [520,760,920]
+      : kind==="type"
+      ? [320,390]
+      : [430,560];
+
+
+    seq.forEach((freq,n)=>{
+
+      const o=audioCtx.createOscillator();
+
+      const g=audioCtx.createGain();
+
+      o.type="sine";
+
+      o.frequency.value=freq;
+
+      g.gain.setValueAtTime(
+        .0001,
+        now+n*.055
+      );
+
+      g.gain.exponentialRampToValueAtTime(
+        .045,
+        now+n*.055+.015
+      );
+
+      g.gain.exponentialRampToValueAtTime(
+        .0001,
+        now+n*.055+.07
+      );
+
+      o.connect(g);
+
+      g.connect(audioCtx.destination);
+
+      o.start(now+n*.055);
+
+      o.stop(now+n*.055+.08);
+
+    });
+
+  }catch(e){}
+
+}
+
+
+/* =========================
+   TYPING
+========================= */
+
+function typing(){
+
+  sound("type");
+
+  const d=document.createElement("div");
+
+  d.className="msg bot";
+
+  d.innerHTML=
+    '<span class="typing">' +
+    '<i></i><i></i><i></i>' +
+    '</span>';
+
+  chat.appendChild(d);
+
+  chat.scrollTop=chat.scrollHeight;
+
+  return d;
+
+}
+
+
+/* =========================
+   ADD MESSAGE
+========================= */
+
+function add(html,buttons=[]){
+
+  let d=document.createElement("div");
+
+  d.className="msg bot";
+
+  d.innerHTML=html;
+
+
+  if(buttons.length){
+
+    let b=document.createElement("div");
+
+    b.className="buttons";
+
+
+    buttons.forEach(x=>{
+
+      let q=document.createElement("button");
+
+      q.className=
+        "btn " +
+        (x.wide ? "wide" : "");
+
+      q.innerHTML=x.t;
+
+
+      q.onclick=()=>{
+
+        sound();
+
+        x.f();
+
+      };
+
+
+      b.appendChild(q);
+
+    });
+
+
+    d.appendChild(b);
+
+  }
+
+
+  chat.appendChild(d);
+
+  chat.scrollTop=chat.scrollHeight;
+
+}
+
+
+/* =========================
+   BOT MESSAGE
+========================= */
+
+function bot(html,buttons=[]){
+
+  let t=typing();
+
+  setTimeout(()=>{
+
+    t.remove();
+
+    add(html,buttons);
+
+  },550);
+
+}
+
+
+/* =========================
+   CLEAR CHAT
+========================= */
+
+function clearChat(){
+
+  sound("remove");
+
+  chat.innerHTML="";
+
+  bot(
+    "Chat cleared successfully.",
+    [
+      {
+        t:"OPEN MAIN MENU",
+        f:home,
+        wide:true
+      }
+    ]
+  );
+
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+function home(){
+
+  chat.innerHTML="";
+
+  bot(
+
+    "<b>Welcome to BISWA STORE 2.0 👋</b><br>" +
+    "<span class='muted'>" +
+    "Premium digital store • Fast support • Secure order flow" +
+    "</span>",
+
+    [
+
+      {
+        t:"🛒 SHOP",
+        f:shop
+      },
+
+      {
+        t:"👤 CONTACT ADMIN",
+        f:contact
+      },
+
+      {
+        t:"⬇ DOWNLOAD LINKS",
+        f:downloads
+      },
+
+      {
+        t:"🎁 SHARE BOT & EARN",
+        f:share
+      }
+
+    ]
+
+  );
+
+}
+
+
+/* =========================
+   SHOP
+========================= */
+
+function shop(){
+
+  bot(
+
+    "<b>/SHOP</b><br>" +
+    "Select your product:",
+
+    Object.keys(prices).map(p=>({
+
+      t:p,
+
+      f:()=>plans(p)
+
+    }))
+
+  );
+
+}
+
+
+/* =========================
+   PLANS
+========================= */
+
+function plans(p){
+
+  bot(
+
+    "<b>"+p+"</b><br>" +
+    "<span class='muted'>Select duration</span>",
+
+    prices[p].map(x=>({
+
+      t:x[0]+" • ₹"+x[1],
+
+      f:()=>payment(
+        p,
+        x[0],
+        x[1]
+      )
+
+    }))
+
+  );
+
+}
+
+
+/* =========================
+   PAYMENT
+========================= */
+
+function payment(
+  product,
+  duration,
+  amount
+){
+
+  let id="pay-"+Date.now();
+
+
+  bot(
+
+    "<b>Payment Request</b><br>" +
+
+    product +
+
+    "<br>Validity: <b>"+
+    duration+
+    "</b>" +
+
+    "<br>Amount: <b>₹"+
+    amount+
+    "</b>" +
+
+    "<br><span class='timer' id='"+
+    id+
+    "'>QR expires in 05:00</span>"
+
+  );
+
+
+  let img=document.createElement("img");
+
+  img.className="qr";
+
+  img.src="qr_code.png";
+
+  img.alt="Payment QR";
+
+  chat.appendChild(img);
+
+
+  let qrActions=document.createElement("div");
+
+  qrActions.className="qr-actions";
+
+
+  qrActions.innerHTML=
+
+    '<button class="btn" id="saveQr">' +
+    '⬇ SAVE QR' +
+    '</button>' +
+
+    '<button class="btn" id="shareQr">' +
+    '↗ SHARE' +
+    '</button>';
+
+
+  chat.appendChild(qrActions);
+
+
+  /* SAVE QR */
+
+  document.getElementById("saveQr").onclick=()=>{
+
+    sound();
+
+    const a=document.createElement("a");
+
+    a.href="qr_code.png";
+
+    a.download=
+      "BISWA_STORE_PAYMENT_QR.png";
+
+    a.click();
+
+  };
+
+
+  /* SHARE QR */
+
+  document.getElementById("shareQr").onclick=async()=>{
+
+    sound();
+
+    try{
+
+      if(navigator.share){
+
+        await navigator.share({
+
+          title:"BISWA STORE Payment QR",
+
+          text:
+            "Payment QR for "+
+            product+
+            " - "+
+            duration+
+            " - ₹"+
+            amount,
+
+          url:location.href
+
+        });
+
+      }else{
+
+        await navigator.clipboard?.writeText(
+          location.href
+        );
+
+      }
+
+    }catch(e){}
+
+  };
+
+
+  let wrap=document.createElement("div");
+
+  wrap.className="msg bot";
+
+
+  wrap.innerHTML=
+
+    "<span class='muted'>" +
+
+    "Scan the QR and complete the exact amount." +
+
+    "</span>" +
+
+    "<div class='buttons'>" +
+
+    '<button class="btn" id="verify">' +
+
+    "✓ VERIFY PAYMENT" +
+
+    "</button>" +
+
+    '<button class="btn danger" id="cancel">' +
+
+    "✕ CANCEL" +
+
+    "</button>" +
+
+    "</div>";
+
+
+  chat.appendChild(wrap);
+
+  chat.scrollTop=chat.scrollHeight;
+
+
+  /* TIMER */
+
+  let sec=300;
+
+  clearInterval(timer);
+
+
+  timer=setInterval(()=>{
+
+    sec--;
+
+    let el=document.getElementById(id);
+
+
+    if(el){
+
+      el.textContent=
+        `QR expires in ${
+          String(Math.floor(sec/60)).padStart(2,"0")
+        }:${
+          String(sec%60).padStart(2,"0")
+        }`;
+
+    }
+
+
+    if(sec<=0){
+
+      clearInterval(timer);
+
+      img.remove();
+
+      qrActions.remove();
+
+      wrap.remove();
+
+      sound("remove");
+
+      bot(
+        "QR expired. Please create a new payment request."
+      );
+
+    }
+
+  },1000);
+
+
+  /* CANCEL */
+
+  document.getElementById("cancel").onclick=()=>{
+
+    clearInterval(timer);
+
+    img.remove();
+
+    qrActions.remove();
+
+    wrap.remove();
+
+    sound("remove");
+
+    bot(
+
+      "Payment cancelled.",
+
+      [
+
+        {
+          t:"BACK TO SHOP",
+          f:shop,
+          wide:true
+        }
+
+      ]
+
+    );
+
+  };
+
+
+  /* VERIFY */
+
+  document.getElementById("verify").onclick=()=>{
+
+    sound("verify");
+
+    clearInterval(timer);
+
+
+    let v=typing();
+
+
+    setTimeout(()=>{
+
+      v.remove();
+
+      img.remove();
+
+      qrActions.remove();
+
+      wrap.remove();
+
+      sound("remove");
+
+
+      add(
+
+        "<b>Payment verification requested ✓</b><br>" +
+
+        product +
+
+        " • " +
+
+        duration +
+
+        " • ₹" +
+
+        amount +
+
+        "<br>" +
+
+        "<span class='muted'>" +
+
+        "After confirmation, tap GET KEY to contact the owner on Telegram." +
+
+        "</span>",
+
+        [
+
+          {
+
+            t:"🔑 GET KEY",
+
+            wide:true,
+
+            f:()=>getKey(
+              product,
+              duration,
+              amount
+            )
+
+          }
+
+        ]
+
+      );
+
+    },3000);
+
+  };
+
+}
+
+
+/* =========================
+   GET KEY
+   TELEGRAM ONLY
+========================= */
+
+function getKey(
+  product,
+  duration,
+  amount
+){
+
+  location.href=ADMIN_TG;
+
+}
+
+
+/* =========================
+   CONTACT ADMIN
+========================= */
+
+function contact(){
+
+  bot(
+
+    "<b>CONTACT ADMIN</b><br>" +
+
+    "<span class='muted'>" +
+
+    "Telegram: @biswa_mods" +
+
+    "</span>",
+
+    [
+
+      {
+
+        t:"TG CONTACT • @biswa_mods",
+
+        f:()=>location.href=ADMIN_TG
+
+      }
+
+    ]
+
+  );
+
+}
+
+
+/* =========================
+   DOWNLOADS
+========================= */
+
+function downloads(){
+
+  bot(
+
+    "<b>DOWNLOAD LINKS</b><br>" +
+
+    "<span class='muted'>" +
+
+    "Choose your download channel." +
+
+    "</span>",
+
+    [
+
+      {
+
+        t:"Telegram Download File",
+
+        f:()=>location.href=TG
+
+      }
+
+    ]
+
+  );
+
+}
+
+
+/* =========================
+   SHARE
+========================= */
+
+function share(){
+
+  let link=location.href;
+
+
+  bot(
+
+    "<b>SHARE BOT & EARN 🎁</b><br>" +
+
+    "<span class='muted'>" +
+
+    "Copy the bot/store link and share it with your friends." +
+
+    "</span>",
+
+    [
+
+      {
+
+        t:"📋 COPY LINK",
+
+        wide:true,
+
+        f:async()=>{
+
+          await navigator.clipboard?.writeText(link);
+
+          bot("Link copied ✓");
+
+        }
+
+      }
+
+    ]
+
+  );
+
+
+  setTimeout(()=>{
+
+    add(
+
+      "<b>Notice / सूचना / জাননী</b>" +
+
+      "<br><br>" +
+
+      "🇮🇳 <b>Hindi:</b> " +
+
+      "Is store link ko apne friends ke saath share karein. " +
+
+      "Agar aapke friend ne 1 key buy ki, " +
+
+      "to aapko <b>10% discount</b> milega." +
+
+      "<br><br>" +
+
+      "🇬🇧 <b>English:</b> " +
+
+      "Share this store link with your friends. " +
+
+      "If your friend buys 1 key, " +
+
+      "you get a <b>10% discount</b>." +
+
+      "<br><br>" +
+
+      "অসমীয়া <b>Assamese:</b> " +
+
+      "এই store link আপোনাৰ বন্ধুসকলৰ সৈতে share কৰক। " +
+
+      "আপোনাৰ বন্ধুৱে 1 key কিনিলে আপুনি " +
+
+      "<b>10% discount</b> পাব।"
+
+    );
+
+  },700);
+
+}
+
+
+/* =========================
+   STARTUP
+========================= */
+
+setTimeout(()=>{
+
+  const splash=
+    document.getElementById("splash");
+
+  splash.classList.add("hide");
+
+  chat.innerHTML="";
+
+
+  const startTyping=typing();
+
+
+  setTimeout(()=>{
+
+    startTyping.remove();
+
+    add(
+      "<span class='muted'>/start</span>"
+    );
+
+
+    setTimeout(()=>{
+
+      home();
+
+    },350);
+
+  },650);
+
+
+},3000);
+
+
+/* =========================
+   ERROR HANDLER
+========================= */
+
+window.addEventListener("error",e=>{
+
+  console.error(e);
+
+  const c=document.getElementById("chat");
+
+
+  if(c && !c.children.length){
+
+    c.innerHTML=
+
+      '<div class="msg bot">' +
+
+      '<b>BISWA STORE 2.0</b><br>' +
+
+      '<span class="muted">' +
+
+      'Store loaded. Tap MAIN MENU.' +
+
+      '</span>' +
+
+      '</div>';
+
+  }
+
+});
+
+</script>
+
+</body>
+  </html>
